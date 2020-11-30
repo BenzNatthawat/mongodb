@@ -13,8 +13,17 @@ describe('Reading users out of the database', () => {
     // joe // instance of a User
     User.find({ name: 'Joe' })
       .then((users) => {
-        console.log(users)
-        assert(users[0]._id === joe._id)
+        // console.log(users[0]._id)
+        // console.log(joe._id)
+        assert(users[0]._id.toString() === joe._id.toString())
+        done()
+      })
+  })
+
+  it('find a user with a particular id', (done) => {
+    User.findOne({ _id: joe._id })
+      .then((user) => {
+        assert(user.name === 'Joe')
         done()
       })
   })
